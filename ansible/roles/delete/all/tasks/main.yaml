@@ -1,0 +1,38 @@
+---
+- name: Stop VM if it exists
+  proxmox_kvm:
+    api_host: "{{api_host}}"
+    api_user: "{{api_user}}"
+    api_password: "{{api_password}}"
+    node: "{{node}}"
+    vmid: "{{ item }}"
+    state: stopped
+    force: true
+  register: stop_vm_result
+  failed_when: "'VM not found' in stop_vm_result.msg"
+
+- name: Delete VM if it exists
+  proxmox_kvm:
+    api_host: "{{api_host}}"
+    api_user: "{{api_user}}"
+    api_password: "{{api_password}}"
+    node: "{{node}}"
+    vmid: "{{ item }}"
+    state: absent
+  register: delete_vm_result
+  failed_when: "'VM not found' in delete_vm_result.msg"
+
+- name: Remove win hosts
+  replace:
+    path: ../hosts
+    regexp: '(\[win\]\n)[\s\S]*?(\[win:vars\])'
+    replace: '\1\2'
+    #backup: true
+
+- name: Remove linux hosts
+  replace:
+    path: ../hosts
+    regexp: '(\[linux\]\n)[\s\S]*?(\[linux:vars\])'
+    replace: '\1\2'
+    #backup: true
+

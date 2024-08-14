@@ -1,6 +1,6 @@
 # VM settings
-vm_name                     = "Win10-Cloud-Init"
-template_name               = "Win10-Template-Cloud-Init"
+vm_name                     = "Win2019-Template"
+template_name               = "Win2019-Template"
 os                          = "win10"
 cores                       = 2
 sockets                     = 2
@@ -24,7 +24,7 @@ builder_username            = "Administrator"
 builder_password            = "P@ssW0rd1!!!"
 
 # Path to Windows 10 ISO on Proxmox host
-iso_file                    = "local:iso/Windows-64.iso"
+iso_file                    = "storage:iso/SW_DVD9_Win_Server_STD_CORE_2019_1809.2_64Bit_English_DC_STD_MLF_X22-18452.ISO"
 
 
-#packer build --var-file=win10x64.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win10x64.pkr.hcl 
+#packer build --var-file=win2019.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win2019.pkr.hcl 

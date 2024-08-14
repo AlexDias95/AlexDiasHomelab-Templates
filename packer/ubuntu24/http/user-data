@@ -1,0 +1,35 @@
+#cloud-config
+autoinstall:
+  version: 1
+  apt:
+   geoip: true
+  locale: en_US
+  keyboard:
+    layout: us
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  ssh:
+    install-server: yes
+    allow-pw: yes
+  user-data:
+    disable_root: false
+    preserve_hostname: false
+    hostname: ubuntu2
+    package_upgrade: true
+    timezone: Europe/Amsterdam
+    users:
+      - name: admin
+        plain_text_passwd: ubuntu
+        shell: /bin/bash
+        groups: [adm, cdrom, dip, plugdev, lxd, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+  packages:
+    - cloud-init
+    - qemu-guest-agent
+  late-commands:
+    - echo test > /tmp/test
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu

@@ -5,10 +5,9 @@
             <SetupUILanguage>
                 <UILanguage>en-US</UILanguage>
             </SetupUILanguage>
-			<InputLocale>en-US</InputLocale>
+            <InputLocale>en-US</InputLocale>
             <SystemLocale>en-US</SystemLocale>
             <UILanguage>en-US</UILanguage>
-            <UILanguageFallback>en-US</UILanguageFallback>
             <UserLocale>en-US</UserLocale>
         </component>
         <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -17,7 +16,7 @@
                     <CreatePartitions>
                         <CreatePartition wcm:action="add">
                             <Order>1</Order>
-                            <Size>250</Size>
+                            <Size>500</Size>
                             <Type>Primary</Type>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
@@ -50,10 +49,7 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <!-- Value '6' represents Windows 10 Pro -->
-                            <Value>Windows 10 Pro</Value>
-                            <!-- If using the Windows 10 Enterprise from URL-based Packer build, use '<Value>1</Value>'-->
-                            <!-- <Value>1</Value> -->
+                            <Value>Windows Server 2019 SERVERSTANDARD</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
@@ -65,27 +61,15 @@
                 </OSImage>
             </ImageInstall>
             <UserData>
-			    <AcceptEula>true</AcceptEula>
-                <!-- Win10 Pro Evaluation Product Key; comment out the '<ProductKey>' section if using Windows 10 Enterprise -->
-                <ProductKey>
-                    <WillShowUI>Never</WillShowUI>
-                <!-- Generic key, it will not activate your windows -->
-                    <Key>VK7JG-NPHTM-C97JM-9MPGT-3V66T</Key>
-                </ProductKey> 
+                <AcceptEula>true</AcceptEula>
             </UserData>
-        </component>
-    </settings>
-    <settings pass="offlineServicing">
-        <component name="Microsoft-Windows-LUA-Settings" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <!-- Disable user account control -->
-            <EnableLUA>false</EnableLUA>
         </component>
     </settings>
     <settings pass="specialize">
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <TimeZone>Eastern Standard Time</TimeZone>
         </component>
-		<component name="Microsoft-Windows-TerminalServices-LocalSessionManager" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <component name="Microsoft-Windows-TerminalServices-LocalSessionManager" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <fDenyTSConnections>false</fDenyTSConnections>
         </component>
         <component name="Networking-MPSSVC-Svc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -101,19 +85,8 @@
             <SecurityLayer>2</SecurityLayer>
             <UserAuthentication>1</UserAuthentication>
         </component>
-        <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <SkipAutoActivation>true</SkipAutoActivation>
-        </component>
     </settings>
     <settings pass="oobeSystem">
-        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
-            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <InputLocale>en-US</InputLocale>
-            <SystemLocale>en-US</SystemLocale>
-            <UILanguage>en-US</UILanguage>
-            <UserLocale>en-US</UserLocale>
-        </component>
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <AutoLogon>
                 <Password>
@@ -145,10 +118,9 @@
                     <Description>Prevent autologon of the Administrator account</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Order>5</Order>
                     <CommandLine>cmd.exe /c powershell.exe -ExecutionPolicy Bypass E:\WinRM-Config.ps1</CommandLine>
-                    <Description>Configure WinRM</Description>
-                    <RequiresUserInput>true</RequiresUserInput>
+                    <Order>5</Order>
+                    <Description>Enable WinRM</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>6</Order>
@@ -159,6 +131,9 @@
             </FirstLogonCommands>
             <OOBE>
                 <HideEULAPage>true</HideEULAPage>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
                 <NetworkLocation>Home</NetworkLocation>
                 <ProtectYourPC>1</ProtectYourPC>
@@ -171,5 +146,5 @@
             </UserAccounts>
         </component>
     </settings>
-    <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source="wim:c:/temp/win10/install.wim#Windows 10 Pro"/>
+    <cpi:offlineImage cpi:source="wim:c:/win2019/install.wim#Windows Server 2019 SERVERSTANDARD" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
 </unattend>

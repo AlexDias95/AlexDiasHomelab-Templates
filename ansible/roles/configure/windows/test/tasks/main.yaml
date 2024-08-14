@@ -1,0 +1,4 @@
+- name: Make tmp folder
+  win_file:
+    path: C:\tmp
+    state: directory

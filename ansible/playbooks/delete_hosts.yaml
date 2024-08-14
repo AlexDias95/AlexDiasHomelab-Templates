@@ -1,0 +1,19 @@
+- name: Delete VMs
+  hosts: localhost
+  vars_files:
+      -  ../vars/vars_deploy.yaml
+      -  ../vars/vars_hosts.yaml
+  gather_facts: yes
+  tasks:
+    - name: Delete linux vms
+      include_role:
+        name: roles/delete/all
+      vars:
+        newid: "{{ item }}"
+      loop: "{{ newid_values }}"
+    - name: Delete Windows vms
+      include_role:
+        name: roles/delete/all
+      vars:
+        newid: "{{ item }}"
+      loop: "{{ newid_values_win }}"

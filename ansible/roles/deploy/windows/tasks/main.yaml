@@ -1,0 +1,77 @@
+---
+- name: Create Virtual Machine
+  proxmox_kvm:
+    api_host: "{{api_host}}"
+    api_user: "{{api_user}}"
+    api_password: "{{api_password}}"
+    node: "{{node}}"
+    name: win10
+    vmid: 125
+    newid: 135
+    clone: test
+    storage: storage
+    state: present
+    
+
+- name: Update
+  proxmox_kvm:
+    api_host: "{{api_host}}"
+    api_user: "{{api_user}}"
+    api_password: "{{api_password}}"
+    node: "{{node}}"
+    vmid: 135
+    net:
+      net0: 'virtio,bridge=vmbr0,firewall=1'
+    ipconfig:
+      ipconfig0: 'ip=dhcp'
+    update: yes
+
+- name: Start VM
+  proxmox_kvm:
+    api_host: "{{api_host}}"
+    api_user: "{{api_user}}"
+    api_password: "{{api_password}}"
+    node: "{{node}}"
+    name: win10
+    state: started
+
+  
+- name: Retrieve information about specific VM by ID
+  community.general.proxmox_vm_info:
+    api_host: "{{api_host}}"
+    api_user: "{{api_user}}"
+    api_password: "{{api_password}}"
+    node: "{{node}}"
+    type: qemu
+    vmid: 135
+    network: true
+  register: vm_info
+  retries: 2
+  #needs a delay, VM is not UP yet, qemu agent is no accesible. Slow ssd add more delay
+  delay: 30
+  until: vm_info is not failed
+
+- name: Debug VM info
+  debug:
+    var: vm_info
+
+- name: Set fact for VM IP and hostname
+  set_fact:
+    vm_ip: "{{ vm_info.proxmox_vms[0].network | selectattr('name', 'equalto', 'Ethernet') | map(attribute='ip-addresses') | first | selectattr('ip-address-type', 'equalto', 'ipv4') | map(attribute='ip-address') | first }}"
+    vm_hostname: "{{ vm_info.proxmox_vms[0].name }}"
+
+- name: Update static inventory file
+  lineinfile:
+    path: ../hosts
+    line: "{{ vm_hostname }} ansible_host={{ vm_ip }}"
+    insertafter: '\[win\]'
+    #create: yes
+    state: present
+
+# Alternative
+#- name: Add VM hostname and IP address to inventory file
+#  blockinfile:
+#    path: ../hosts
+#    block: |
+#      {{ vm_hostname }} ansible_host={{ vm_ip }}
+#    insertafter: '\[linux\]'
