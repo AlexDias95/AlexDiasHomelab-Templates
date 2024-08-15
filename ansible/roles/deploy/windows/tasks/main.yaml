@@ -5,9 +5,9 @@
     api_user: "{{api_user}}"
     api_password: "{{api_password}}"
     node: "{{node}}"
-    name: win10
+    name: "win10-{{ item }}"
     vmid: 125
-    newid: 135
+    newid: "{{ item }}"
     clone: test
     storage: storage
     state: present
@@ -19,7 +19,7 @@
     api_user: "{{api_user}}"
     api_password: "{{api_password}}"
     node: "{{node}}"
-    vmid: 135
+    vmid: "{{ item }}"
     net:
       net0: 'virtio,bridge=vmbr0,firewall=1'
     ipconfig:
@@ -32,7 +32,7 @@
     api_user: "{{api_user}}"
     api_password: "{{api_password}}"
     node: "{{node}}"
-    name: win10
+    vmid: "{{ item }}"
     state: started
 
   
@@ -43,7 +43,7 @@
     api_password: "{{api_password}}"
     node: "{{node}}"
     type: qemu
-    vmid: 135
+    vmid: "{{ item }}"
     network: true
   register: vm_info
   retries: 2
