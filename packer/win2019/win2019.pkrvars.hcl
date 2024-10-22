@@ -1,6 +1,6 @@
 # VM settings
 vm_name                     = "Win2019-Template"
-template_name               = "Win2019-Template"
+template_name               = "Win2019-Template-Cloudbase"
 os                          = "win10"
 cores                       = 2
 sockets                     = 2
@@ -9,9 +9,9 @@ cpu_type                    = "kvm64"
 vm_cdrom_type               = "sata"
 
 # Disk
-disk_size                   = "40G"
+disk_size                   = "30G"
 disk_format                 = "raw"
-disk_storage_pool           = "local-lvm"
+disk_storage_pool           = "storage"
 iso_storage_pool            = "storage"
 
 # Network

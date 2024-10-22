@@ -3,6 +3,8 @@ autoinstall:
   version: 1
   apt:
    geoip: true
+  #early-commands:
+   #- chmod 600 /target/etc/netplan/01-network-manager-all.yam
   locale: en_US
   keyboard:
     layout: us
@@ -17,11 +19,11 @@ autoinstall:
   user-data:
     disable_root: false
     preserve_hostname: false
-    hostname: ubuntu2
+    hostname: ubuntu
     package_upgrade: true
     timezone: Europe/Amsterdam
     users:
-      - name: admin
+      - name: fansec
         plain_text_passwd: ubuntu
         shell: /bin/bash
         groups: [adm, cdrom, dip, plugdev, lxd, sudo]
@@ -31,5 +33,4 @@ autoinstall:
     - cloud-init
     - qemu-guest-agent
   late-commands:
-    - echo test > /tmp/test
-    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+    - echo 'fansec ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu

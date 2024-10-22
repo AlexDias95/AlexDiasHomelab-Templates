@@ -1,0 +1,22 @@
+id: ansible_ssh_remote
+namespace: demo
+
+tasks:
+  - id: ansible_task
+    type: io.kestra.plugin.ansible.cli.AnsibleCLI
+    docker:
+      image: cytopia/ansible:latest-tools
+      pullPolicy: IF_NOT_PRESENT
+      user: "root"
+    namespaceFiles:
+      enabled: true
+    beforeCommands:
+      - pip install -r ansible/requirements.txt 
+    inputFiles:
+      inventory.ini: "{{ read('/ansible/inventory.ini') }}"
+      id_rsa: "{{ secret('SSH_KEY') }}"
+    commands:
+      - ansible-playbook --key-file id_rsa ansible/playbooks/deploy_hosts.yaml 
+    env:
+      ANSIBLE_HOST_KEY_CHECKING: "False"
+      ANSIBLE_REMOTE_USER: "admin"

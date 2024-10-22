@@ -1,6 +1,6 @@
 # VM settings
-vm_name                     = "Win10-Cloud-Init"
-template_name               = "Win10-Template-Cloud-Init"
+vm_name                     = "Win10-Cloudbase"
+template_name               = "Win10-Template-Cloudbase"
 os                          = "win10"
 cores                       = 2
 sockets                     = 2
@@ -9,9 +9,9 @@ cpu_type                    = "kvm64"
 vm_cdrom_type               = "sata"
 
 # Disk
-disk_size                   = "40G"
+disk_size                   = "30G"
 disk_format                 = "raw"
-disk_storage_pool           = "local-lvm"
+disk_storage_pool           = "storage"
 iso_storage_pool            = "storage"
 
 # Network
@@ -24,7 +24,7 @@ builder_username            = "Administrator"
 builder_password            = "P@ssW0rd1!!!"
 
 # Path to Windows 10 ISO on Proxmox host
-iso_file                    = "local:iso/Windows-64.iso"
+iso_file                    = "storage:iso/Windows-64.iso"
 
 
 #packer build --var-file=win10x64.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win10x64.pkr.hcl 

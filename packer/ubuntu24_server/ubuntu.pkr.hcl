@@ -171,7 +171,7 @@ source "proxmox-iso" "ubuntu" {
   cloud_init_storage_pool = "storage"
 
   vm_name                  = var.vm_name
-  vm_id                    = "124" 
+  vm_id                    = "123" 
 
   qemu_agent = true
   

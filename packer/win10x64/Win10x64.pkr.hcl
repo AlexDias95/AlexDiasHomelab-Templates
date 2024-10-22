@@ -191,7 +191,7 @@ source "proxmox-iso" "win10" {
     scsi_controller          = "virtio-scsi-single"
     iso_file                 = var.iso_file
     cloud_init = true
-    cloud_init_storage_pool = "local-lvm"
+    cloud_init_storage_pool = "storage"
 
     network_adapters {
           bridge    = var.bridge
@@ -208,7 +208,7 @@ source "proxmox-iso" "win10" {
       }
     
     efi_config {
-          efi_storage_pool  = "local-lvm"
+          efi_storage_pool  = "storage"
           efi_type          = "4m"
           pre_enrolled_keys = true
       }
@@ -218,7 +218,7 @@ source "proxmox-iso" "win10" {
           device           = "ide3"
           #ide2 is used by Windows ISO
           iso_storage_pool = var.iso_storage_pool
-          cd_files         = ["mount/autounattend.xml", "mount/WinRM-Config.ps1", "mount/Install-Agent.ps1", "mount/cloudbase/CloudbaseInitSetup_x64.msi",
+          cd_files         = ["mount/autounattend.xml", "mount/WinRM-Config.ps1", "mount/Install-Agent.ps1", "mount/cloudbase/cloudbase.ps1", 
                               "mount/cloudbase/cloudbase-init.conf" ]
           cd_label         = "cidata"
     }
@@ -247,17 +247,9 @@ build {
   #provisioner "windows-update" {
   #  search_criteria = "IsInstalled=0"  # Install updates that are not already installed
   #}
-
+  
   provisioner "windows-shell" {
-  inline = [
-    # Use CMD to copy the file
-    "cmd /c copy E:\\cloudbase-init.conf \"C:\\Program Files\\Cloudbase Solutions\\Cloudbase-Init\\conf\\cloudbase-init.conf\" /Y"
-  ]
-  }
-  provisioner "windows-shell" {
-   inline = [
-     "msiexec /i E:\\CloudbaseInitSetup_x64.msi /qn /l*v log.txt"
-   ]
+    inline = ["shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""]
   }
  
 }

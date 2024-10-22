@@ -192,6 +192,8 @@ source "proxmox-iso" "win2019" {
     scsi_controller          = "virtio-scsi-single"
     iso_file                 = var.iso_file
     unmount_iso              = true
+    cloud_init               = true
+    cloud_init_storage_pool  = "storage"
     
 
     network_adapters {
@@ -209,7 +211,7 @@ source "proxmox-iso" "win2019" {
       }
     
     efi_config {
-          efi_storage_pool  = "local-lvm"
+          efi_storage_pool  = "storage"
           efi_type          = "4m"
           pre_enrolled_keys = true
       }
@@ -219,7 +221,7 @@ source "proxmox-iso" "win2019" {
           device           = "ide3"
           #ide2 is used by Windows ISO
           iso_storage_pool = var.iso_storage_pool
-          cd_files         = ["mount/autounattend.xml", "mount/WinRM-Config.ps1", "mount/Install-Agent.ps1", "mount/cloudbase/CloudbaseInitSetup_x64.msi",
+          cd_files         = ["mount/autounattend.xml", "mount/WinRM-Config.ps1", "mount/Install-Agent.ps1", "mount/cloudbase/cloudbase.ps1",
                               "mount/cloudbase/cloudbase-init.conf"]
           cd_label         = "cidata"
     }
@@ -254,32 +256,13 @@ build {
         ]
         }
 
-  provisioner "windows-update" {
-        search_criteria = "IsInstalled=0"  # Install updates that are not already installed
-        filters = [
-            "exclude:$_.Title -like '*Preview*'",
-            "include:$true"
-            ]
-    }
-
-  provisioner "windows-shell" {
-   inline = [
-     "msiexec /i E:\\CloudbaseInitSetup_x64.msi /qn /l*v log.txt"
-   ]
-  }
-
-  provisioner "windows-shell" {
-  inline = [
-    # Use CMD to copy the file
-    "cmd /c copy E:\\cloudbase-init.conf \"C:\\Program Files\\Cloudbase Solutions\\Cloudbase-Init\\conf\\cloudbase-init.conf\" /Y"
-  ]
-  }
-   
-  provisioner "windows-shell" {
-  inline = [
-    "powershell -Command \"Get-WmiObject -Query 'Select * from Win32_CDROMDrive' | ForEach-Object { $_.Delete() }\""
-  ]
-}
+  #provisioner "windows-update" {
+  #      search_criteria = "IsInstalled=0"  # Install updates that are not already installed
+  #      filters = [
+  #          "exclude:$_.Title -like '*Preview*'",
+  #          "include:$true"
+  #          ]
+  #  }
 
   provisioner "windows-shell" {
     inline = ["shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""]

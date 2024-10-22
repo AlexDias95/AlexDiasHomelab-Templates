@@ -1,0 +1,79 @@
+id: packer_all
+namespace: demo
+
+tasks:
+  - id: build_ubuntu
+    type: io.kestra.plugin.core.flow.Parallel
+    tasks:
+      - id: build_ubuntu24_04
+        type: io.kestra.plugin.docker.Run
+        containerImage: hashicorp/packer:latest
+        pullPolicy: IF_NOT_PRESENT
+        user: "root"
+        namespaceFiles:
+          enabled: true
+        entryPoint:
+          - /bin/sh
+          - -c
+        commands:
+          - |
+            packer init packer/ubuntu24&& \
+            cd packer/ubuntu24 && \
+            pwd && \
+            packer build --var-file=ubuntu.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl ubuntu.pkr.hcl
+
+      - id: build_ubuntu24_04_server
+        type: io.kestra.plugin.docker.Run
+        containerImage: hashicorp/packer:latest
+        pullPolicy: IF_NOT_PRESENT
+        user: "root"
+        namespaceFiles:
+          enabled: true
+        entryPoint:
+          - /bin/sh
+          - -c
+        commands:
+          - |
+            packer init packer/ubuntu24_server && \
+            cd packer/ubuntu24_server && \
+            pwd && \
+            packer build --var-file=ubuntu.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl ubuntu.pkr.hcl
+  
+  - id: build_win
+    type: io.kestra.plugin.core.flow.Parallel
+    tasks:
+      - id: build_win10
+        type: io.kestra.plugin.docker.Run
+        containerImage: hashicorp/packer:latest
+        pullPolicy: IF_NOT_PRESENT
+        user: "root"
+        namespaceFiles:
+          enabled: true
+        entryPoint:
+          - /bin/sh
+          - -c
+        commands:
+          - |
+            packer init packer/win10x64 && \
+            cd packer/win10x64 && \
+            pwd && \
+            packer build --var-file=win10x64.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win10x64.pkr.hcl 
+
+      - id: build_win2019
+        type: io.kestra.plugin.docker.Run
+        containerImage: hashicorp/packer:latest
+        pullPolicy: IF_NOT_PRESENT
+        user: "root"
+        namespaceFiles:
+          enabled: true
+        entryPoint:
+          - /bin/sh
+          - -c
+        commands:
+          - |
+            packer init packer/win2019 && \
+            cd packer/win2019 && \
+            pwd && \
+            packer build --var-file=win2019.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win2019.pkr.hcl 
+
+  

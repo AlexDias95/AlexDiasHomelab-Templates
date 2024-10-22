@@ -11,6 +11,7 @@
     clone: test
     storage: storage
     state: present
+  timeout: 300 # 5m
     
 
 - name: Update

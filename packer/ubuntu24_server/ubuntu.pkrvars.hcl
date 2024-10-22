@@ -1,6 +1,6 @@
 # VM settings
-vm_name                     = "Ubuntu24.04.Desktop"
-template_name               = "Ubuntu24.04.Desktop"
+vm_name                     = "Ubuntu24.04.Server"
+template_name               = "Ubuntu24.04.Server"
 os                          = "l26"
 cores                       = 2
 sockets                     = 2
@@ -24,7 +24,7 @@ builder_username            = "fansec"
 builder_password            = "ubuntu"
 
 # Path to Windows 10 ISO on Proxmox host
-iso_file                    = "storage:iso/ubuntu24_04.iso"
+iso_file                    = "storage:iso/ubuntu_24_server.iso"
 
 
 #packer build --var-file=ubuntu.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl ubuntu.pkr.hcl 

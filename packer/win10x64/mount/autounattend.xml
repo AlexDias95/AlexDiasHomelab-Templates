@@ -156,6 +156,12 @@
                     <Description>Configure Agent</Description>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>7</Order>
+                    <CommandLine>cmd.exe /c powershell.exe -ExecutionPolicy Bypass E:\cloudbase.ps1</CommandLine>
+                    <Description>Configure Agent</Description>
+                    <RequiresUserInput>true</RequiresUserInput>
+                </SynchronousCommand>
             </FirstLogonCommands>
             <OOBE>
                 <HideEULAPage>true</HideEULAPage>
