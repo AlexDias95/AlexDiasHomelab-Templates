@@ -6,6 +6,11 @@ autoinstall:
   #early-commands:
    #- chmod 600 /target/etc/netplan/01-network-manager-all.yam
   locale: en_US
+  network:
+    version: 2
+    ethernets:
+      ens18:
+        dhcp4: true
   keyboard:
     layout: us
   storage:
