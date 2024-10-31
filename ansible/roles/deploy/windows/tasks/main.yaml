@@ -9,7 +9,7 @@
     vmid: 125
     newid: "{{ item }}"
     clone: test
-    storage: storage
+    storage: "{{storage}}"
     state: present
   timeout: 300 # 5m
   retries: 3

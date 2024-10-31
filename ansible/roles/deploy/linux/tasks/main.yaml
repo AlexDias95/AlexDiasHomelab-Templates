@@ -9,7 +9,7 @@
     vmid: 123
     newid: "{{ item }}"
     clone: test
-    storage: storage
+    storage: "{{storage}}"
     state: present
   timeout: 300 # 5m
     
