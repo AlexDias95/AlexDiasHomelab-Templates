@@ -1,6 +1,6 @@
 # Ansible VM Deployment and Configuration
 
-This is the skeleton used for future project. This repository contains a set of Ansible playbooks and roles designed for the dynamic creation, deletion, and management of Windows and Linux virtual machines (VMs) using Proxmox VE. The VMs are created from pre-existing templates, assigned dynamic IPs via DHCP, and automatically added to a static inventory file (`hosts`) for future provisioning and configuration.
+This is the skeleton used for future project. This repository contains a set of Ansible playbooks and roles designed for the dynamic creation, deletion, and management of Windows and Linux virtual machines (VMs) using Proxmox VE. The VMs are created from pre-existing templates, assigned dynamic IPs via DHCP, and automatically added to a static inventory file (`hosts`) for future provisioning and configuration. There are 3 playbooks avaible run with ansible-playbook playbooks/.
 
 ## Features
 
