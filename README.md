@@ -7,7 +7,7 @@ This repository automates VM template creation, deployment, and cleanup in Proxm
 - A new, clean VM that can connect to your Proxmox server
 - Docker and Docker Compose installed on the VM
 - Access to Proxmox credentials for API usage
-- Download the ISOs for ubuntu 24.04 desktop/server, win10, win2019 aswell quemu_agent.iso in you storage
+- Download the ISOs for ubuntu 24.04 desktop/server, win10, win2019 aswell quemu_agent.iso on your storage
 
 ## Setup Instructions
 
