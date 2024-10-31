@@ -17,11 +17,11 @@ This repository automates VM template creation, deployment, and cleanup in Proxm
    git clone https://github.com/fansec/proxmox_dev.git
    cd proxmox_dev
 
-2. **Clone the Repository** 
+2. **Edit Proxmox Creds** 
 
 Update the Proxmox credentials in either of the following files:
 - Namespace Configuration (recommended for demo): Modify credentials in the namespace configuration files.
-- Direct Configuration: Edit the credentials directly in:
+- Direct Configuration: Edit the credentials and values for the storage and node directly in:
     - Packer Configuration (proxmox.pkrvars.hcl)
     - Ansible Variables (vars_node)
 
@@ -30,7 +30,7 @@ Update the Proxmox credentials in either of the following files:
 Run Docker Compose to initialize the Kestra environment:
  ``` sudo docker-compose up -d ```
 
-4. **Start Docker Services** 
+4. **Run the Flows** 
 
 Three flows are available for automating different tasks:
 - Template Creation: Builds VM templates for Ubuntu 24.04 (desktop and server), Windows 10 x64, and Windows 2029.
