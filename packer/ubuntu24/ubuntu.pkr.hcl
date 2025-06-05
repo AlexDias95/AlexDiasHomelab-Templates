@@ -199,6 +199,7 @@ source "proxmox-iso" "ubuntu" {
 
   sockets                  = var.sockets
   cores                    = var.cores
+  cpu_type                 = var.cpu_type
   node                 = var.proxmox_node
   proxmox_url          = "https://${var.proxmox_host}/api2/json"
   username             = var.proxmox_api_user
