@@ -42,6 +42,7 @@ services:
       - SECRET_TERRAFORM_TOKEN=${SECRET_TERRAFORM_TOKEN}
       - SECRET_TSIG_KEY_HOME=${SECRET_TSIG_KEY_HOME}
       - SECRET_SSH_KEY=${SECRET_SSH_KEY}
+      
     ports:
       - "8080:8080"
       - "8081:8081"
