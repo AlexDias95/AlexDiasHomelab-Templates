@@ -19,10 +19,6 @@ vm_network                  = "vmbr0"
 firewall                    = "true"
 bridge                      = "vmbr0"
 
-# User settings
-builder_username            = env("BUILDER_USERNAME")
-builder_password            = env("BUILDER_PASSWORD")
-
 # Path to ISO on Proxmox host
 iso_file                    = "local:iso/Windows-64.iso"
 
