@@ -28,8 +28,8 @@ autoinstall:
     package_upgrade: true
     timezone: Europe/Amsterdam
     users:
-      - name: fansec
-        plain_text_passwd: ubuntu
+      - name: packer
+        plain_text_passwd: packer123
         shell: /bin/bash
         groups: [adm, cdrom, dip, plugdev, lxd, sudo]
         lock-passwd: false
@@ -38,4 +38,4 @@ autoinstall:
     - cloud-init
     - qemu-guest-agent
   late-commands:
-    - echo 'fansec ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+    - echo 'packer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
