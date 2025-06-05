@@ -5,9 +5,9 @@ autoinstall:
    geoip: true
   #early-commands:
    #- chmod 600 /target/etc/netplan/01-network-manager-all.yam
-  locale: en_US
+  locale: pt_PT.UTF-8
   keyboard:
-    layout: us
+    layout: pt
   storage:
     layout:
       name: direct
