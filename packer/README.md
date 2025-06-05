@@ -72,7 +72,7 @@ This repository contains configuration files for building a Windows 10 Pro/Windo
 2. **Install Packer Plugins**: Ensure the required Packer plugins are installed by running:
    ```sh
    packer init .
-   packer build --var-file=win10x64.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win10x64.pkr.hcl
+   packer build --var-file=win10x64.pkrvars.hcl --var-file=../.proxmox.pkrvars.hcl win10x64.pkr.hcl
 
    sudo apt-get install python3-venv python3-pip
    pip install proxmoxer

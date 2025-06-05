@@ -23,4 +23,4 @@ bridge                      = "vmbr0"
 iso_file                    = "local:iso/en_windows_server_2019_updated_sept_2019_x64_dvd_199664ce.iso"
 
 
-#packer build --var-file=win2019.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win2019.pkr.hcl 
+#packer build --var-file=win2019.pkrvars.hcl --var-file=../.proxmox.pkrvars.hcl win2019.pkr.hcl 

@@ -23,4 +23,4 @@ bridge                      = "vmbr0"
 iso_file                    = "local:iso/ubuntu_24_server.iso"
 
 
-#packer build --var-file=ubuntu.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl ubuntu.pkr.hcl 
+#packer build --var-file=ubuntu.pkrvars.hcl --var-file=../.proxmox.pkrvars.hcl ubuntu.pkr.hcl 

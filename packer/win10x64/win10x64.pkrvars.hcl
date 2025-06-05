@@ -23,4 +23,4 @@ bridge                      = "vmbr0"
 iso_file                    = "local:iso/Windows-64.iso"
 
 
-#packer build --var-file=win10x64.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win10x64.pkr.hcl 
+#packer build --var-file=win10x64.pkrvars.hcl --var-file=../.proxmox.pkrvars.hcl win10x64.pkr.hcl 
