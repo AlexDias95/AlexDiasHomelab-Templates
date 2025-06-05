@@ -4,7 +4,7 @@
 /app/kestra server standalone -c /app/config.yaml &
 
 # Wait for the server to start, then run the curl commands
-sleep 5
+sleep 30
 
 # First curl command
 curl -X POST http://localhost:8080/api/v1/flows/import \

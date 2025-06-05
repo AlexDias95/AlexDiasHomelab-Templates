@@ -2,29 +2,29 @@
 vm_name                     = "Win2019-Template"
 template_name               = "Win2019-Template-Cloudbase"
 os                          = "win10"
-cores                       = 2
-sockets                     = 2
-memory                      = 4112
-cpu_type                    = "kvm64"
-vm_cdrom_type               = "sata"
+cores                       = 4
+sockets                     = 1
+memory                      = 4096
+cpu_type                    = "x86-64-v3"
+machine                     = "q35"
 
 # Disk
 disk_size                   = "30G"
-disk_format                 = "raw"
-disk_storage_pool           = "storage"
-iso_storage_pool            = "storage"
+disk_format                 = "qcow2"
+disk_storage_pool           = "local-lvm"
+iso_storage_pool            = "local"
 
 # Network
 vm_network                  = "vmbr0"
 firewall                    = "true"
 bridge                      = "vmbr0"
 
-# Windows settings
-builder_username            = "Administrator"
-builder_password            = "P@ssW0rd1!!!"
+# User settings
+builder_username            = env("BUILDER_USERNAME") != "" ? env("BUILDER_USERNAME") : "Administrator"
+builder_password            = env("BUILDER_PASSWORD") != "" ? env("BUILDER_PASSWORD") : "P@ssW0rd1!!!"
 
-# Path to Windows 10 ISO on Proxmox host
-iso_file                    = "storage:iso/SW_DVD9_Win_Server_STD_CORE_2019_1809.2_64Bit_English_DC_STD_MLF_X22-18452.ISO"
+# Path to ISO on Proxmox host
+iso_file                    = "local:iso/en_windows_server_2019_updated_sept_2019_x64_dvd_199664ce.iso"
 
 
 #packer build --var-file=win2019.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win2019.pkr.hcl 

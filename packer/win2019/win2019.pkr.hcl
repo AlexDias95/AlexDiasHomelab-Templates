@@ -8,7 +8,7 @@ packer {
     }
 
     windows-update = {
-      version = "0.16.7"
+      version = "0.16.10"
       source  = "github.com/rgl/windows-update"
     }
   }
@@ -72,7 +72,7 @@ variable "cores" {
 
 variable "cpu_type" {
   type        = string
-  description = "The CPU type to emulate. See the Proxmox API documentation for the complete list of accepted values. For best performance, set this to host. Defaults to kvm64"
+  description = "The CPU type to emulate. See the Proxmox API documentation for the complete list of accepted values. For best performance, set this to host. Defaults to x86-64-v3"
 }
 
 variable "sockets" {
@@ -180,7 +180,7 @@ source "proxmox-iso" "win2019" {
     # General Settings
     template_name            = var.template_name
     vm_name                  = var.vm_name
-    vm_id                    = "122" 
+    vm_id                    = "20002"
 
     # VM Configuration Settings
     os                       = var.os
@@ -193,7 +193,7 @@ source "proxmox-iso" "win2019" {
     iso_file                 = var.iso_file
     unmount_iso              = true
     cloud_init               = true
-    cloud_init_storage_pool  = "storage"
+    cloud_init_storage_pool  = var.disk_storage_pool
     
 
     network_adapters {
@@ -211,7 +211,7 @@ source "proxmox-iso" "win2019" {
       }
     
     efi_config {
-          efi_storage_pool  = "storage"
+          efi_storage_pool  = "local-lvm"
           efi_type          = "4m"
           pre_enrolled_keys = true
       }
@@ -229,8 +229,8 @@ source "proxmox-iso" "win2019" {
     additional_iso_files {
             unmount          = true
             device           = "sata1"
-            iso_storage_pool = "storage"
-            iso_file         = "storage:iso/quemu_agent.iso"
+            iso_storage_pool = "local"
+            iso_file         = "local:iso/virtio-win.iso"
       }
 
     winrm_username           = var.builder_username

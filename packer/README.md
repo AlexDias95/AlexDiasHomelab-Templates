@@ -29,16 +29,16 @@ This repository contains configuration files for building a Windows 10 Pro/Windo
      vm_name                     = "Win10Pro-Template"
      template_name               = "Win10Pro-Template"
      os                          = "win10"
-     cores                       = 2
-     sockets                     = 2
-     memory                      = 4112
-     cpu_type                    = "kvm64"
+     cores                       = 4
+     sockets                     = 1
+     memory                      = 4096
+     cpu_type                    = "x86-64-v3"
      vm_cdrom_type               = "sata"
      
      disk_size                   = "40G"
      disk_format                 = "raw"
      disk_storage_pool           = "local-lvm"
-     iso_storage_pool            = "storage"
+     iso_storage_pool            = "local"
      
      vm_network                  = "vmbr0"
      firewall                    = "true"
@@ -57,7 +57,7 @@ This repository contains configuration files for building a Windows 10 Pro/Windo
      proxmox_node              = "dev"
      proxmox_api_user          = "root@pam"
      proxmox_api_password      = "Password"
-     proxmox_storage           = "storage"
+     proxmox_storage           = "local"
      ```
 
 ## Install tools

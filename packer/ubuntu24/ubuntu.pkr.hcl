@@ -63,7 +63,7 @@ variable "cores" {
 
 variable "cpu_type" {
   type        = string
-  description = "The CPU type to emulate. See the Proxmox API documentation for the complete list of accepted values. For best performance, set this to host. Defaults to kvm64"
+  description = "The CPU type to emulate. See the Proxmox API documentation for the complete list of accepted values. For best performance, set this to host. Defaults to x86-64-v3"
 }
 
 variable "sockets" {
@@ -168,10 +168,10 @@ source "proxmox-iso" "ubuntu" {
  
   # VM Cloud-Init Settings
   cloud_init = true
-  cloud_init_storage_pool = "storage"
+  cloud_init_storage_pool = var.disk_storage_pool
 
   vm_name                  = var.vm_name
-  vm_id                    = "124" 
+  vm_id                    = "20001" 
 
   qemu_agent = true
   

@@ -1,6 +1,6 @@
 # Reusable vars
-proxmox_host              = "10.10.10.10:8006"
-proxmox_node              = "yournode"
-proxmox_api_user          = "root@pam"
-proxmox_api_password      = "YourPassword"
-proxmox_storage           = "storage"
+proxmox_host              = env("PROXMOX_HOST")
+proxmox_node              = env("PROXMOX_NODE")
+proxmox_api_user          = env("PROXMOX_API_USER")
+proxmox_api_password      = env("PROXMOX_API_PASSWORD")
+proxmox_storage           = env("PROXMOX_STORAGE")

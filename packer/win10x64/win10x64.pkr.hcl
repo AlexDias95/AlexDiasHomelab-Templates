@@ -71,7 +71,7 @@ variable "cores" {
 
 variable "cpu_type" {
   type        = string
-  description = "The CPU type to emulate. See the Proxmox API documentation for the complete list of accepted values. For best performance, set this to host. Defaults to kvm64"
+  description = "The CPU type to emulate. See the Proxmox API documentation for the complete list of accepted values. For best performance, set this to host. Defaults to x86-64-v3"
 }
 
 variable "sockets" {
@@ -191,7 +191,7 @@ source "proxmox-iso" "win10" {
     scsi_controller          = "virtio-scsi-single"
     iso_file                 = var.iso_file
     cloud_init = true
-    cloud_init_storage_pool = "storage"
+    cloud_init_storage_pool = var.disk_storage_pool
 
     network_adapters {
           bridge    = var.bridge
@@ -208,7 +208,7 @@ source "proxmox-iso" "win10" {
       }
     
     efi_config {
-          efi_storage_pool  = "storage"
+          efi_storage_pool  = "local-lvm"
           efi_type          = "4m"
           pre_enrolled_keys = true
       }
@@ -226,8 +226,8 @@ source "proxmox-iso" "win10" {
     additional_iso_files {
             unmount          = true
             device           = "sata1"
-            iso_storage_pool = "storage"
-            iso_file         = "storage:iso/quemu_agent.iso"
+            iso_storage_pool = "local"
+            iso_file         = "local:iso/virtio-win.iso"
       }
 
     winrm_username           = var.builder_username
