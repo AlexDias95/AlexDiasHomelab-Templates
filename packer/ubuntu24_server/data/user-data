@@ -2,21 +2,14 @@
 autoinstall:
   version: 1
   apt:
-    fallback: offline-install
     geoip: true
-    preserve_sources_list: false
-    primary:
-    - arches: [amd64, i386]
-      uri: http://gb.archive.ubuntu.com/ubuntu
-    - arches: [default]
-      uri: http://ports.ubuntu.com/ubuntu-ports
   #early-commands:
    #- chmod 600 /target/etc/netplan/01-network-manager-all.yam
   network:
       network:
         version: 2
         ethernets:
-          eth0:
+          enp6s18:
             dhcp4: true
             nameservers:
               addresses: [1.1.1.1]
