@@ -20,8 +20,8 @@ firewall                    = "true"
 bridge                      = "vmbr0"
 
 # User settings
-builder_username            = env("BUILDER_USERNAME") != "" ? env("BUILDER_USERNAME") : "admin"
-builder_password            = env("BUILDER_PASSWORD") != "" ? env("BUILDER_PASSWORD") : "ubuntu"
+builder_username            = env("BUILDER_USERNAME")
+builder_password            = env("BUILDER_PASSWORD")
 
 # Path to ISO on Proxmox host
 iso_file                    = "local:iso/ubuntu24_04.iso"
