@@ -121,7 +121,7 @@ variable "builder_password" {
 
 variable "disk_format" {
   type    = string
-  description = "The format of the file backing the disk. Can be raw, cow, qcow, qed, qcow2, vmdk or cloop. Defaults to raw"
+  description = "The format of the file backing the disk. Can be raw, cow, qcow, qed, raw, vmdk or cloop. Defaults to raw"
   default = ""
 }
 

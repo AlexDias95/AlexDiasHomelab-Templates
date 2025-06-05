@@ -10,7 +10,7 @@ machine                     = "q35"
 
 # Disk
 disk_size                   = "8G"
-disk_format                 = "qcow2"
+disk_format                 = "raw"
 disk_storage_pool           = "local-lvm"
 iso_storage_pool            = "local"
 
