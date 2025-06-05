@@ -160,6 +160,7 @@ source "proxmox-iso" "ubuntu" {
     "c<wait>",
     "linux /casper/vmlinuz",
     " net.ifnames=0",
+    " ipv6.disable=1",
     " autoinstall",
     "<enter><wait5s>",
     "initrd /casper/initrd",
