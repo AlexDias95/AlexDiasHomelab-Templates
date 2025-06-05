@@ -20,7 +20,7 @@ tasks:
             packer init packer/ubuntu24&& \
             cd packer/ubuntu24 && \
             pwd && \
-            packer build --var-file=ubuntu.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl ubuntu.pkr.hcl
+            packer build --var-file=ubuntu.pkrvars.hcl --var-file=../.proxmox.pkrvars.hcl ubuntu.pkr.hcl
 
       - id: build_ubuntu24_04_server
         type: io.kestra.plugin.docker.Run
@@ -37,7 +37,7 @@ tasks:
             packer init packer/ubuntu24_server && \
             cd packer/ubuntu24_server && \
             pwd && \
-            packer build --var-file=ubuntu.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl ubuntu.pkr.hcl
+            packer build --var-file=ubuntu.pkrvars.hcl --var-file=../.proxmox.pkrvars.hcl ubuntu.pkr.hcl
   
   - id: build_win
     type: io.kestra.plugin.core.flow.Parallel
@@ -57,6 +57,6 @@ tasks:
             packer init packer/win2019 && \
             cd packer/win2019 && \
             pwd && \
-            packer build --var-file=win2019.pkrvars.hcl --var-file=../proxmox.pkrvars.hcl win2019.pkr.hcl 
+            packer build --var-file=win2019.pkrvars.hcl --var-file=../.proxmox.pkrvars.hcl win2019.pkr.hcl 
 
   
