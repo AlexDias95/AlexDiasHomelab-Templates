@@ -145,6 +145,11 @@ variable "firewall" {
   description = "If the interface should be protected by the firewall. Defaults to false"
 }
 
+variable "machine" {
+  type        = string
+  description = "The machine type to emulate. Defaults to pc, but can also be q35"
+}
+
 source "proxmox-iso" "ubuntu" {
   
   #cd_files = ["cloud-init"]
@@ -207,7 +212,6 @@ source "proxmox-iso" "ubuntu" {
   insecure_skip_tls_verify = true
   memory               = var.memory
   os                   = var.os
-  machine              = var.machine
   scsi_controller      = "virtio-scsi-single"
   ssh_password         = var.builder_password
   ssh_port             = 22

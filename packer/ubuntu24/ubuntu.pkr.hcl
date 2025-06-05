@@ -145,6 +145,11 @@ variable "firewall" {
   description = "If the interface should be protected by the firewall. Defaults to false"
 }
 
+variable "machine" {
+  type        = string
+  description = "The machine type to emulate. Defaults to pc, but can also be q35"
+}
+
 source "proxmox-iso" "ubuntu" {
   
   #cd_files = ["cloud-init"]

@@ -164,6 +164,11 @@ variable "iso_storage_pool" {
   description = "Proxmox storage pool onto which to upload the ISO file."
 }
 
+variable "machine" {
+  type        = string
+  description = "The machine type to emulate. Defaults to pc, but can also be q35"
+}
+
 #########
 # SOURCE
 #########
