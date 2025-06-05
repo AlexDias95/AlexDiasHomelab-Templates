@@ -6,7 +6,7 @@ cores                       = 4
 sockets                     = 1
 memory                      = 4096
 cpu_type                    = "x86-64-v3"
-machine                     = "q35"
+machine                     = "pc"
 
 # Disk
 disk_size                   = "8G"
