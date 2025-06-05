@@ -194,6 +194,7 @@ source "proxmox-iso" "win2019" {
     unmount_iso              = true
     cloud_init               = true
     cloud_init_storage_pool  = var.disk_storage_pool
+    machine                  = var.machine
     
 
     network_adapters {

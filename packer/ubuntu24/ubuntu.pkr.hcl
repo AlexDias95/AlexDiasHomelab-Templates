@@ -207,6 +207,7 @@ source "proxmox-iso" "ubuntu" {
   insecure_skip_tls_verify = true
   memory               = var.memory
   os                   = var.os
+  machine              = var.machine
   scsi_controller      = "virtio-scsi-single"
   ssh_password         = var.builder_password
   ssh_port             = 22
