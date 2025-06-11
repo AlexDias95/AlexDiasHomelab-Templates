@@ -268,7 +268,7 @@ build {
               " 🔄  System Uptime     : $(uptime -p)",
               "",
               " For documentation, support, or to request additional resources:",
-              " ▶ Visit: https://homelab.alexdias.local (or contact lab admin)",
+              " ▶ Visit: https://github.com/AlexDias95 (or contact lab admin)",
               "",
               "======================================================================",
               "",
