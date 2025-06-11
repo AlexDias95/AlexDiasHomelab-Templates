@@ -4,7 +4,7 @@ template_name               = "Ubuntu24.04.Desktop"
 os                          = "l26"
 cores                       = 4
 sockets                     = 1
-memory                      = 4096
+memory                      = 8192
 cpu_type                    = "x86-64-v3"
 machine                     = "q35"
 
