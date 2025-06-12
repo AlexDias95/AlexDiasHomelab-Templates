@@ -247,7 +247,7 @@ build {
               "fi",
               "",
               "# Custom MOTD with dynamic values",
-              "cat << 'MOTD_EOF'",
+              "cat << MOTD_EOF",
               "",
               "======================================================================",
               "                      AlexDiasHomelab Virtual Environment",
